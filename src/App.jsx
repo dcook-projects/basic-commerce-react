@@ -43,5 +43,38 @@ function Bio() {
   );
 }
 
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "digital camera",
+    file: "camera.jpg",
+    price: 300.00
+  },
+  {
+    id: 2,
+    name: "digital camera lens",
+    file: "camera lens.jpg",
+    price: 79.00
+  },
+  {
+    id: 3,
+    name: "lighter",
+    file: "lighter.jpg",
+    price: 7.99,
+  },
+  {
+    id: 4,
+    name: "lipstick",
+    file: "lipstick.jpg",
+    price: 25.00
+  },
+  {
+    id: 5,
+    name: "SD card",
+    file: "sd card.jpg",
+    price: 50.00
+  }
+];
+
 
 export default App
