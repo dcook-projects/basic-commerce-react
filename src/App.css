@@ -5,3 +5,13 @@
   text-align: center;
 }
 
+img {
+  max-width: 640px;
+  max-height: 480px;
+}
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 5%;
+}

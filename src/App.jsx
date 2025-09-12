@@ -65,7 +65,7 @@ function Shop() {
   return (
     <div className="shop">
       {PRODUCTS.map((product) => (
-        <Product data={product} />
+        <Product key={product.id} data={product} />
       ))}
     </div>
   );
