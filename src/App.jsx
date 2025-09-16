@@ -25,7 +25,7 @@ function App() {
         <Navbar></Navbar>
         <Routes>
           <Route path='/' element={<Home cart={cart} setCart={setCart} />} />
-          <Route path='/cart' element={<Cart cart={cart} />} />
+          <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
         </Routes>
       </Router>
     </>
@@ -50,21 +50,28 @@ function Home({ cart, setCart }) {
   );
 }
 
-function Cart({ cart }) {
+function Cart({ cart, setCart }) {
   return (
     <>
       <h1>Your Cart</h1>
       <div className="customer-cart">
         {PRODUCTS.filter(product => cart[product.id] > 0).map(product => (
-          <CartItem key={product.name} data={product} qty={cart[product.id]} />
+          <CartItem key={product.name} data={product} qty={cart[product.id]} cart={cart} setCart={setCart} />
         ))}
       </div>
     </>
   );
 }
 
-function CartItem( { data, qty }) {
+function CartItem( { data, qty, cart, setCart }) {
   const { id, name, file, price } = data;
+
+  function handleRemoveFromCart(id) {
+    setCart({
+      ...cart,
+      [id]: cart[id] - 1,
+    })
+  }
 
   return (
     <div className="product">
@@ -72,6 +79,7 @@ function CartItem( { data, qty }) {
       <h2>{name}</h2>
       <p>${price}</p>
       <p>Qty: {qty}</p>
+      <button onClick={() => handleRemoveFromCart(id)} >Remove from Cart</button>
     </div>
   );
 }
