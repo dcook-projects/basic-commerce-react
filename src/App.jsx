@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
+import { GoogleLogin } from '@react-oauth/google'
+import { useNavigate } from 'react-router-dom'
 import './App.css'
 import product1 from './images/camera lens.jpg'
 import product2 from './images/camera.jpg'
@@ -42,10 +45,19 @@ function Navbar() {
 }
 
 function Home({ cart, setCart }) {
+  const navigate = useNavigate();
+
   return (
     <>
       <h1>Home</h1>
       <Shop cart={cart} setCart={setCart} />
+      <GoogleLogin
+      onSuccess={(credentialResponse) => {
+        console.log(jwtDecode(credentialResponse.credential));
+        navigate("/cart");
+      }}
+      onError={() => console.log("Login failed")} 
+      />
     </>
   );
 }
